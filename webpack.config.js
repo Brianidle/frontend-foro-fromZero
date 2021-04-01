@@ -1,3 +1,5 @@
+const path = require('path');
+
 const javascriptRules = {
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
@@ -12,7 +14,8 @@ const javascriptRules = {
 module.exports = {
   entry: "./index.js",
   output: {
-    filename: "app.js",
+    path: path.resolve(__dirname, ''),
+    filename: "./dist/app.js"
   },
   module: {
     rules: [javascriptRules],
