@@ -1,0 +1,77 @@
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+
+const propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  inputValues: PropTypes.any.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+const Form = styled.form`
+  height: 100vh;
+  text-align: center;
+  margin-top: 25px;
+`;
+
+const Input = styled.input`
+  width: 300px;
+  height: 30px;
+  margin-bottom: 15px;
+`;
+
+const Button = styled.button`
+  width: 150px;
+  font-size: 18px;
+`;
+
+const PostFormView = ({
+  buttonText,
+  onSubmit,
+  inputValues,
+  onChange,
+  titleInputValue,
+  contentInputValue,
+  urlImageInputValue,
+}) => {
+  return (
+    <Form id="EditAndCreationFormPost" onSubmit={onSubmit}>
+      <div>
+        <label htmlFor="title">Title: </label>
+        <Input
+          value={inputValues.title ?? titleInputValue}
+          required
+          id="title"
+          name="title"
+          onChange={onChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="content">Content: </label>
+        <Input
+          value={inputValues.content ?? contentInputValue}
+          id="content"
+          name="content"
+          onChange={onChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="urlImage">Image (Optional): </label>
+        <Input
+          value={inputValues.urlImage ?? urlImageInputValue}
+          id="urlImage"
+          name="urlImage"
+          onChange={onChange}
+        />
+      </div>
+      <Button id="submitButton" type="submit">
+        {buttonText}
+      </Button>
+    </Form>
+  );
+};
+
+PostFormView.propTypes = propTypes;
+
+export default PostFormView;
