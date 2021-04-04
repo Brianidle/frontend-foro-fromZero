@@ -1,0 +1,2 @@
+Pagina web de un Foro, donde los usuarios podrán crear foros, escribir comentarios en los foros, buscar por temas que les interesen y votar positiva o negativamente, entre otras cosas.
+Este proyecto se creo desde cero, con el comando git init, instalando webpack para crear el archivo bundle y descargando las librerias necesarias para que webpack entienda codigo JSX, para asi poder trabajar con react.
