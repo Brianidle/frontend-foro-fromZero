@@ -53,7 +53,6 @@ describe("inputs rendering", () => {
   });
 
   it("the input elements renders", () => {
-
     //ARRANGE
     //Reset of the simulated react state value
     setValue("");
@@ -75,7 +74,6 @@ describe("inputs rendering", () => {
   });
 
   it("input elements values and simulated react state, changes when user write on the input elements", () => {
-
     //ARRANGE
 
     //Reset of the simulated react state value
@@ -110,10 +108,7 @@ describe("inputs rendering", () => {
         buttonText="Test"
         onSubmit={() => console.log("test")}
         inputValues={useStateValue}
-        onChange={(e) => {
-          console.log(e.target.name + " " + e.target.value);
-          onChange(e);
-        }}
+        onChange={(e) => onChange(e)}
       />
     );
 
@@ -124,7 +119,6 @@ describe("inputs rendering", () => {
   });
 
   it("input elements start with the values specified by props", () => {
-
     //ARRANGE
 
     //Reset of the simulated react state value
@@ -149,6 +143,97 @@ describe("inputs rendering", () => {
     expect(field("urlImage").value).toEqual("urlImageTest");
   });
 
+  it("it is possible to call the onSubmit function when the title input have a value", () => {
+    //ARRANGE
+
+    //Reset of the simulated react state value
+    setValue({});
+
+    //ARRANGE AND ACT
+    render(
+      <PostFormView
+        buttonText="Test"
+        onSubmit={() => console.log("test")}
+        inputValues={useStateValue}
+        onChange={(e) => onChange(e)}
+      />
+    );
+
+    //Simulation of the writing on the input elements
+    ReactTestUtils.Simulate.change(field("title"), {
+      target: { value: "TitleTest", name: "title" },
+    });
+    ReactTestUtils.Simulate.change(field("content"), {
+      target: { value: "contentTest", name: "content" },
+    });
+    ReactTestUtils.Simulate.change(field("urlImage"), {
+      target: { value: "", name: "urlImage" },
+    });
+
+    //Simulation of a Re-Render cause the state changued
+    ReactDOM.unmountComponentAtNode(container);
+
+    render(
+      <PostFormView
+        buttonText="Test"
+        onSubmit={() => console.log("test")}
+        inputValues={useStateValue}
+        onChange={(e) => onChange(e)}
+      />
+    );
+
+    expect(form("EditAndCreationFormPost").checkValidity()).toBe(true);
+  });
+
+  it("it is not possible to call the onSubmit function when the title input have not a value", () => {
+    //ARRANGE
+
+    //Reset of the simulated react state value
+    setValue({});
+
+    //ARRANGE AND ACT
+    render(
+      <PostFormView
+        buttonText="Test"
+        onSubmit={() => console.log("test")}
+        inputValues={useStateValue}
+        onChange={(e) => onChange(e)}
+      />
+    );
+
+    //Simulation of the writing on the input elements
+    ReactTestUtils.Simulate.change(field("title"), {
+      target: { value: "", name: "title" },
+    });
+    ReactTestUtils.Simulate.change(field("content"), {
+      target: { value: "contentTest", name: "content" },
+    });
+    ReactTestUtils.Simulate.change(field("urlImage"), {
+      target: { value: "urlImage", name: "urlImage" },
+    });
+
+    //Simulation of a Re-Render cause the state changued
+    ReactDOM.unmountComponentAtNode(container);
+
+    render(
+      <PostFormView
+        buttonText="Test"
+        onSubmit={() => console.log("test")}
+        inputValues={useStateValue}
+        onChange={(e) => onChange(e)}
+      />
+    );
+
+    expect(form("EditAndCreationFormPost").checkValidity()).toBe(false);
+    //There are two problems when you want to click the submit button of your form
+    //so the onSubmit funcion execute or not depending if the require input fields have a value
+    //First: ReactTestUtils.Simulate.click(formButton) never call the onSubmit function of the form
+    //Second: ReactTestUtils.Simulate.submit(formButton) always execute the onSubmit function of the form no matter if the require input fields have a value
+    //One day i hope its possible to solve this
+
+    //ReactTestUtils.Simulate.submit(field("submitButton"));
+  });
+
   it("onSubmit function called when submit button is pressed", () => {
     expect.hasAssertions();
     //ARRANGE
@@ -156,17 +241,17 @@ describe("inputs rendering", () => {
     //Reset of the simulated react state value
     setValue({});
 
-    const functionToCall=()=>{
-        console.log("submitFunction was executed");
-    }
+    const functionToCall = () => {
+      console.log("submitFunction was executed");
+    };
 
-    const mockFunctionToCall=jest.fn(functionToCall);
+    const mockFunctionToCall = jest.fn(functionToCall);
 
     //ARRANGE AND ACT
     render(
       <PostFormView
         buttonText="Test"
-        onSubmit={()=>mockFunctionToCall()}
+        onSubmit={() => mockFunctionToCall()}
         inputValues={useStateValue}
         onChange={(e) => onChange(e)}
         contentInputValue="ContentTest"
@@ -175,11 +260,8 @@ describe("inputs rendering", () => {
       />
     );
 
-    let formElement=form("EditAndCreationFormPost");
-    ReactTestUtils.Simulate.submit(formElement);
+    ReactTestUtils.Simulate.submit(field("submitButton"));
 
     expect(mockFunctionToCall).toHaveBeenCalled();
-    
   });
-
 });
