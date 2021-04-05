@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 const javascriptRules = {
   test: /\.(js|jsx)$/,
@@ -7,17 +7,23 @@ const javascriptRules = {
     loader: "babel-loader",
     options: {
       presets: ["@babel/preset-react", "@babel/preset-env"],
-    }
-  }
+    },
+  },
 };
+
+const cssRules = { test: /\.css$/, use: ["style-loader", "css-loader"] };
 
 module.exports = {
   entry: "./index.js",
   output: {
-    path: path.resolve(__dirname, ''),
-    filename: "./dist/app.js"
+    path: path.resolve(__dirname, ""),
+    filename: "./dist/app.js",
+  },
+  devtool: "source-map",
+  devServer: {
+    historyApiFallback: true,
   },
   module: {
-    rules: [javascriptRules],
+    rules: [javascriptRules, cssRules],
   },
 };
