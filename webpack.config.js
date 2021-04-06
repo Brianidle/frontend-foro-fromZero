@@ -22,6 +22,8 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     historyApiFallback: true,
+    port: 3491,
+    open: true,
   },
   module: {
     rules: [javascriptRules, cssRules],
