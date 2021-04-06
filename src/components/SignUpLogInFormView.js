@@ -4,10 +4,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const propTypes = {
-  requestTrigger:PropTypes.func.isRequired,
-  onChange:PropTypes.func.isRequired,
-  inputValues:PropTypes.any.isRequired,
-  buttonText: PropTypes.string.isRequired
+  requestTrigger: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  inputValues: PropTypes.any.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 
 const Input = styled.input`
@@ -26,7 +26,7 @@ const SignUpLogInFormView = ({
   onChange,
   inputValues,
   formType,
-  buttonText
+  buttonText,
 }) => {
   return (
     <form
@@ -79,7 +79,9 @@ const SignUpLogInFormView = ({
         />
       </div>
 
-      <Button id="submitButton" type="submit">{buttonText}</Button>
+      <Button id="submitButton" type="submit">
+        {buttonText}
+      </Button>
     </form>
   );
 };
