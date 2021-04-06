@@ -68,7 +68,7 @@ const NavigationBar = (props) => {
           ></FormatPaintIcon>
         </HomeButton>
       </LogoContainer>
-          HOLA
+      
       <SearchBarContainer>
         <SearchBar />
       </SearchBarContainer>
