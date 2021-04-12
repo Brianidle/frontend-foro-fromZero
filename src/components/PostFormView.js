@@ -41,10 +41,10 @@ const PostFormView = ({
         <label htmlFor="title">Title: </label>
         <Input
           value={inputValues.title ?? titleInputValue}
-          required
           id="title"
           name="title"
           onChange={onChange}
+          data-testid="inputTitle"
         />
       </div>
       <div>
@@ -54,6 +54,7 @@ const PostFormView = ({
           id="content"
           name="content"
           onChange={onChange}
+          data-testid="inputContent"
         />
       </div>
       <div>
@@ -63,6 +64,7 @@ const PostFormView = ({
           id="urlImage"
           name="urlImage"
           onChange={onChange}
+          data-testid="inputUrl"
         />
       </div>
       <Button id="submitButton" type="submit">
