@@ -16,7 +16,11 @@ const PostFormContainer = ({
   contentInputValue,
   urlImageInputValue,
 }) => {
-  const [values, setValue] = useState([]);
+  const [values, setValue] = useState({
+    title: titleInputValue,
+    content: contentInputValue,
+    urlImage: urlImageInputValue,
+  });
 
   const onChange = (event) => {
     setValue({ ...values, [event.target.name]: event.target.value });
@@ -29,7 +33,7 @@ const PostFormContainer = ({
       inputValues={values}
       onSubmit={(event) => {
         event.preventDefault();
-        if (values.urlImage || values.content) {
+        if (values.title && (values.urlImage || values.content)) {
           requestTrigger({ variables: { ...values } });
         } else {
           //activar una notificación para mostrar que notifique que se necesita un content o un urlImage
