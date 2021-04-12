@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ReactTestUtils from "react-dom/test-utils";
 
-import SignUpLogInFormView from "../components/SignUpLogInFormView";
+import SignUpLogInFormView from "../../components/SignUpLogInFormView";
 
 var useStateValue;
 

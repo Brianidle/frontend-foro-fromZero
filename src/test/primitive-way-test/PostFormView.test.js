@@ -143,7 +143,7 @@ describe("inputs rendering", () => {
     expect(field("urlImage").value).toEqual("urlImageTest");
   });
 
-  it("it is possible to call the onSubmit function when the title input have a value", () => {
+  it("it is possible to call the onSubmit function when the title input has a value", () => {
     //ARRANGE
 
     //Reset of the simulated react state value
@@ -185,7 +185,7 @@ describe("inputs rendering", () => {
     expect(form("EditAndCreationFormPost").checkValidity()).toBe(true);
   });
 
-  it("it is not possible to call the onSubmit function when the title input have not a value", () => {
+  it("it is not possible to call the onSubmit function when the title input has not a value", () => {
     //ARRANGE
 
     //Reset of the simulated react state value
