@@ -11,6 +11,9 @@ import NewPost from "./newpost";
 import EditPost from "./editpost";
 import Post from "./post";
 
+import ProtectedGeneralRoute from './ProtectedGeneralRoute';
+import ProtectedRouteForEdition from './ProtectedRouteForEdition';
+
 const Pages = () => {
   return (
     <Router>
@@ -19,8 +22,8 @@ const Pages = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/myposts" component={MyPosts} />
-        <Route path="/newpost" component={NewPost} />
-        <Route path="/editpost" component={EditPost} />
+        <ProtectedGeneralRoute path="/newpost" component={NewPost} />
+        <ProtectedRouteForEdition path="/editpost" component={EditPost} />
         <Route path="/post/:id" component={Post} />
       </WebPageLayout>
     </Router>
