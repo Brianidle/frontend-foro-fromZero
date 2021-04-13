@@ -22,7 +22,7 @@ const MyPosts = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout>
       <PostList posts={data.authorPosts} />
     </Layout>
   );
