@@ -37,6 +37,7 @@ const GET_AUTHOR_POSTS = gql`
       title
       content
       urlImage
+      createdAt
       author{
         username
       }
