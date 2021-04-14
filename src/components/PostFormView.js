@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 const Form = styled.form`
-  height: 100vh;
   text-align: center;
   margin-top: 25px;
 `;
