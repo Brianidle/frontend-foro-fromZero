@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import Pages from "./pages";
 import {
@@ -15,8 +15,10 @@ import { Provider } from "react-redux";
 import { changueTokenReducer } from "./reducers/changueToken";
 import { doChangueToken } from "./actions/actionCreators";
 
+import { getJsonCookies } from "./helpers/cookieHelper";
+
 const uri = "http://localhost:4000/foroApi";
-const httpLink = createHttpLink({ uri });
+const httpLink = createHttpLink({ uri, credentials: "include" });
 const cache = new InMemoryCache();
 
 let rootReducer = combineReducers({
@@ -32,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: localStorage.getItem("token") || "",
+      authorization: getJsonCookies().user_session || "",
     },
   };
 });
@@ -45,7 +47,10 @@ const client = new ApolloClient({
 });
 
 function App() {
-  let token = localStorage.getItem("token");
+  //When the webpage opens, cookies are read to see if the webpage have a token, and updates the redux state
+  //so the components who depends on the state have an initial value
+
+  let token = getJsonCookies().user_session;
   if (token) {
     store.dispatch(doChangueToken(token));
   }
