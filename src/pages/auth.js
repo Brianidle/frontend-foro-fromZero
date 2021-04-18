@@ -1,10 +1,10 @@
 import React from "react";
 import { BACKEND_API_URI } from "../constantVariables";
-import { getJsonCookies } from "../helpers/cookieHelper";
+import { getBrowserCookiesInJSON } from "../helpers/cookieHelper";
 
 class Auth {
   isAuthenticated() {
-    let jsonCookies = getJsonCookies();
+    let jsonCookies = getBrowserCookiesInJSON();
 
     if (jsonCookies.user_session) {
       return true;

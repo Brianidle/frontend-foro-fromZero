@@ -1,4 +1,4 @@
-export const getJsonCookies = () => {
+export const getBrowserCookiesInJSON = () => {
   let cookiesString = document.cookie;
   let jsonCookies;
 
