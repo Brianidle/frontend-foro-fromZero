@@ -28,7 +28,7 @@ const UserDropDown = (props) => {
         <ArrowDropDownIcon />
       </button>
       <div className="dropdown-content">
-        {props.token && (
+        {props.isAuthenticated && (
           <div>
             <DropDownOptionButton
               onClick={() => {
@@ -49,7 +49,7 @@ const UserDropDown = (props) => {
             </DropDownOptionButton>
           </div>
         )}
-        {!props.token && (
+        {!props.isAuthenticated && (
           <div>
             <DropDownOptionButton
               onClick={() => {
@@ -70,11 +70,11 @@ const UserDropDown = (props) => {
             </DropDownOptionButton>
           </div>
         )}
-        {props.token && (
+        {props.isAuthenticated && (
           <DropDownOptionButton
             onClick={() => {
+              props.logout();
               props.deleteTokenFromState();
-              localStorage.removeItem("token");
               props.history.push("/");
             }}
           >

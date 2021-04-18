@@ -9,6 +9,8 @@ import UserDropDown from "./UserDropDown";
 import { connect } from "react-redux";
 import { doChangueToken } from "../actions/actionCreators";
 
+import auth from "../pages/auth";
+
 const HeaderBar = styled.header`
   background-color: #ff1a1a;
   min-width: 100%;
@@ -68,7 +70,7 @@ const NavigationBar = (props) => {
           ></FormatPaintIcon>
         </HomeButton>
       </LogoContainer>
-      
+
       <SearchBarContainer>
         <SearchBar />
       </SearchBarContainer>
@@ -92,7 +94,8 @@ const NavigationBar = (props) => {
       )}
 
       <UserDropDown
-        token={props.token}
+        isAuthenticated={props.token}
+        logout={auth.logOut}
         deleteTokenFromState={props.deleteTokenFromState}
       />
     </HeaderBar>
