@@ -8,12 +8,13 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import EditIcon from "@material-ui/icons/Edit";
 
-import { withRouter } from "react-router-dom";
-
 import moment from "moment";
 
 const propTypes = {
   post: PropTypes.object.isRequired,
+  belongsToThePostFeed: PropTypes.bool.isRequired,
+  belongToTheUserAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const PostInfoPanel = styled.div`
@@ -172,8 +173,9 @@ const BottomOfThePostPanel = styled.div`
 const PostView = ({
   post,
   belongsToThePostFeed,
+  belongToTheUserAuthenticated,
   windowLocationFunc,
-  history,
+  history
 }) => {
   if (!belongsToThePostFeed) {
     sessionStorage.setItem("post", JSON.stringify(post));
@@ -227,7 +229,8 @@ const PostView = ({
             <ModeCommentIcon style={{ paddingTop: 5, fontSize: 21 }} />
             <strong style={{ paddingLeft: 5 }}>46 Comments</strong>
           </BottomPanelButtonContainer>
-          {!belongsToThePostFeed && (
+
+          {!belongsToThePostFeed && belongToTheUserAuthenticated && (
             <BottomPanelButtonContainer
               onClick={() => history.push("/editpost")}
             >
@@ -243,4 +246,4 @@ const PostView = ({
 
 PostView.propTypes = propTypes;
 
-export default withRouter(PostView);
+export default PostView;
