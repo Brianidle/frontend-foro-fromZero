@@ -40,4 +40,14 @@ const EDIT_POST = gql`
   }
 `;
 
-export { SIGN_UP, NEW_POST, EDIT_POST };
+const DELETE_POST = gql`
+  mutation DeletePost(
+   $idPost: ID!
+  ) {
+   deletePost(
+     idPost: $idPost
+    )
+  }
+`;
+
+export { SIGN_UP, NEW_POST, EDIT_POST, DELETE_POST };
