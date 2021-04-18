@@ -6,6 +6,7 @@ import styled from "styled-components";
 import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from "@material-ui/icons/Edit";
 
 import moment from "moment";
@@ -174,6 +175,7 @@ const PostView = ({
   post,
   belongsToThePostFeed,
   belongToTheUserAuthenticated,
+  deletePost,
   windowLocationFunc,
   history
 }) => {
@@ -236,6 +238,15 @@ const PostView = ({
             >
               <EditIcon style={{ paddingTop: 5, fontSize: 21 }} />
               <strong style={{ paddingLeft: 5 }}>Edit</strong>
+            </BottomPanelButtonContainer>
+          )}
+
+          {!belongsToThePostFeed && belongToTheUserAuthenticated && (
+            <BottomPanelButtonContainer
+              onClick={() => deletePost()}
+            >
+              <DeleteIcon style={{ paddingTop: 5, fontSize: 21 }} />
+              <strong style={{ paddingLeft: 5 }}>Remove</strong>
             </BottomPanelButtonContainer>
           )}
         </BottomOfThePostPanel>
