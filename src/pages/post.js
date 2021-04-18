@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PostView from "../components/PostView";
+import PostViewContainer from "../components/PostViewContainer";
 
 import { useQuery } from "@apollo/client";
 import { GET_POST } from "../gql/query";
@@ -40,13 +40,13 @@ const Post = (props) => {
   const { data, loading } = useQuery(GET_POST, { variables: { idPost } });
 
   if (loading) return <p>LOADING..</p>;
-  
+
   let post = data.post;
 
   return (
     <PostLayout>
       <PostContainer>
-        <PostView post={post} key={post.id} belongsToThePostFeed={false} />
+        <PostViewContainer post={post} belongsToThePostFeed={false} />
       </PostContainer>
       <AsideContainer>
         <AboutLinksContainer>ABOUT LINKS</AboutLinksContainer>

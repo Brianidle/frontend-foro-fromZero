@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-import PostView from "./PostView";
+import PostViewContainer from './PostViewContainer';
 
 const propTypes = {
   posts: PropTypes.array.isRequired,
@@ -10,12 +10,10 @@ const propTypes = {
 
 const PostList = ({ posts }) => {
   return posts.map((post) => (
-    <PostView
-      post={post}
+    <PostViewContainer post={post}
       key={post.id}
       belongsToThePostFeed={true}
-      windowLocationFunc={() => (window.location.href = `post/${post.id}`)}
-    />
+      windowLocationFunc={() => (window.location.href = `post/${post.id}`)} />
   ));
 };
 
