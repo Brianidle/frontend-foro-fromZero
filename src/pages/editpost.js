@@ -12,7 +12,7 @@ const EditPost = (props) => {
   const [editPost] = useMutation(EDIT_POST, {
     variables: { idPost: post.id },
     onCompleted: (data) => {
-      if (data.editPost === "EDIT_SUCESS") {
+      if (data.editPost === "POST_EDITED") {
         props.history.push("/");
         //activate the "Post edited successfully" when the notification messages are implemented.
       }

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import {connect} from 'react-redux';
 
 import SignUpLoginFormContainer from "../components/SignUpLoginFormContainer";
 import { useMutation } from "@apollo/client";
@@ -17,9 +18,8 @@ const SignUp = (props) => {
   });
 
   const [signUp] = useMutation(SIGN_UP, {
-    onCompleted: (data) => {
-      localStorage.setItem("token", data.signUp);
-      props.history.push("/");
+    onCompleted: () => {
+      props.history.push("/signin");
     },
   });
 
