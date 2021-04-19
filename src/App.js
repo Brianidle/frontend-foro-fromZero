@@ -16,8 +16,10 @@ import { changueTokenReducer } from "./reducers/changueToken";
 import { doChangueToken } from "./actions/actionCreators";
 
 import { getBrowserCookiesInJSON } from "./helpers/cookieHelper";
+import { BACKEND_API_URI } from './constantVariables';
 
-const uri = "http://localhost:4000/foroApi";
+const uri = BACKEND_API_URI;
+
 const httpLink = createHttpLink({ uri, credentials: "include" });
 const cache = new InMemoryCache();
 
