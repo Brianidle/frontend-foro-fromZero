@@ -5,6 +5,8 @@ import { getBrowserCookiesInJSON } from "../helpers/cookieHelper";
 class Auth {
   isAuthenticated() {
     let jsonCookies = getBrowserCookiesInJSON();
+    
+    console.log(jsonCookies);
 
     if (jsonCookies.user_session) {
       return true;
