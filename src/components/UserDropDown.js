@@ -74,7 +74,6 @@ const UserDropDown = (props) => {
           <DropDownOptionButton
             onClick={() => {
               props.logout();
-              props.deleteTokenFromState();
               props.history.push("/");
             }}
           >

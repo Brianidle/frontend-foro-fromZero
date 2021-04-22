@@ -9,7 +9,7 @@ import UserDropDown from "./UserDropDown";
 import { connect } from "react-redux";
 import { doChangueToken } from "../actions/actionCreators";
 
-import auth from "../pages/auth";
+import { BACKEND_API_URI } from '../constantVariables';
 
 const HeaderBar = styled.header`
   background-color: #ff1a1a;
@@ -57,6 +57,17 @@ const SignInSignUpButtonContainer = styled.div`
 `;
 
 const NavigationBar = (props) => {
+
+  const logOut = () => {
+    fetch(BACKEND_API_URI + "/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "text/plain;charset=UTF-8",
+      },
+      credentials: "include", // omit, include
+    }).then(response => { props.deleteTokenFromState();});
+  }
+
   return (
     <HeaderBar>
       <LogoContainer>
@@ -95,8 +106,7 @@ const NavigationBar = (props) => {
 
       <UserDropDown
         isAuthenticated={props.token}
-        logout={auth.logOut}
-        deleteTokenFromState={props.deleteTokenFromState}
+        logout={logOut}
       />
     </HeaderBar>
   );
