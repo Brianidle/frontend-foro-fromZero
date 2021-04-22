@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import auth from "./auth";
+import { connect } from 'react-redux';
 
 // add the PrivateRoute component below our `Pages` component
-const ProtectedGeneralRoute = ({ component: Component, ...rest }) => {
+const ProtectedGeneralRoute = ({ component: Component, userAuthenticated, ...rest }) => {
   // if the user is logged in, route them to the requested component
   // else redirect them to the sign-in page
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (auth.isAuthenticated()) {
+        if (userAuthenticated) {
           return <Component {...props} />;
         } else {
           return (
@@ -29,4 +29,19 @@ const ProtectedGeneralRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default ProtectedGeneralRoute;
+const mapStateToProps = (state) => {
+  let userAuthenticated;
+
+  if (state.tokenState) {
+    userAuthenticated = true;
+  } else {
+    userAuthenticated = false;
+  }
+  console.log("userAuthenticated");
+  console.log(userAuthenticated);
+  return {
+    userAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(ProtectedGeneralRoute);
