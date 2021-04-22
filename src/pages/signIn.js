@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import SignUpLoginFormContainer from "../components/SignUpLoginFormContainer";
-import { SIGN_IN } from "../gql/query";
-import { useLazyQuery } from "@apollo/client";
 
 import { connect } from "react-redux";
 import { doChangueToken } from "../actions/actionCreators";
@@ -16,27 +14,30 @@ const Layout = styled.div`
 `;
 
 const SignIn = (props) => {
-  const [signIn, { data }] = useLazyQuery(SIGN_IN, {
-    onCompleted: () => {
-      let token = data.signIn;
 
-      if (token && token !== "UNSUCCESSFUL_SIGNIN") {
-        fetch(BACKEND_API_URI + "/authCookies", {
-          method: "GET",
-          headers: {
-            "Content-Type": "text/plain;charset=UTF-8",
-            Authorization: token,
-          },
-          credentials: "include",
-        });
-        
-        props.changueTokenState(token);
-        props.history.push("/");
-      } else {
-        //show a notification
-      }
+  const signIn = ({
+    variables: {
+      username, password
     },
-  });
+  }) => {
+    fetch(BACKEND_API_URI + "/signin", {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username,
+        password
+      })
+    }).then(response => response.text())
+      .then(data => {
+        console.log(data);
+        props.changueTokenState("Autorizado");
+        props.history.push("/");
+      });
+  }
 
   useEffect(() => {
     document.title = "SignIn Page";
