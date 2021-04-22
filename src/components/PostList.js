@@ -4,19 +4,21 @@ import PropTypes from "prop-types";
 
 import PostViewContainer from './PostViewContainer';
 
+import { withRouter } from "react-router-dom";
+
 const propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, history }) => {
   return posts.map((post) => (
     <PostViewContainer post={post}
       key={post.id}
       belongsToThePostFeed={true}
-      windowLocationFunc={() => (window.location.href = `post/${post.id}`)} />
+      windowLocationFunc={() => (history.push(`post/${post.id}`))} />
   ));
 };
 
 PostList.propTypes = propTypes;
 
-export default PostList;
+export default withRouter(PostList);
