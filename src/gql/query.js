@@ -8,6 +8,7 @@ const GET_POST = gql`
       content
       urlImage
       createdAt
+      belongsToTheAuthenticatedUser
       author{
         username
       }
