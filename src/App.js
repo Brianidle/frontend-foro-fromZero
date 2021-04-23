@@ -3,11 +3,13 @@ import React from "react";
 import Pages from "./pages";
 import {
   ApolloClient,
+  ApolloLink,
   ApolloProvider,
   createHttpLink,
-  InMemoryCache,
+  InMemoryCache, from
 } from "@apollo/client";
-import { setContext } from "apollo-link-context";
+
+import { onError } from '@apollo/client/link/error';
 
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
@@ -15,8 +17,8 @@ import { Provider } from "react-redux";
 import { changueTokenReducer } from "./reducers/changueToken";
 import { doChangueToken } from "./actions/actionCreators";
 
-import { getBrowserCookiesInJSON } from "./helpers/cookieHelper";
 import { BACKEND_API_URI } from './constantVariables';
+
 
 const uri = BACKEND_API_URI;
 
@@ -32,30 +34,35 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: getBrowserCookiesInJSON().user_session || "",
-    },
-  };
-});
+const sessionAliveLink = new ApolloLink((operation, forward) => {
+  return forward(operation).map(response => {
+
+    const context = operation.getContext()
+
+    let responseFromServer = context.response;
+    if (responseFromServer.status == 200) {
+
+      if (!store.tokenState) {
+        store.dispatch(doChangueToken("Authorized"));
+      }
+    }
+
+    return response;
+  })
+})
+
+const logoutLink = onError(({ networkError }) => {
+  if (networkError.statusCode === 401) console.log("Session Closed");
+})
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: from([logoutLink, sessionAliveLink, httpLink]),
   cache,
   resolvers: {},
   connectToDevTools: true,
 });
 
 function App() {
-  //When the webpage opens, cookies are read to see if the webpage have a token, and updates the redux state
-  //so the components who depends on the state have an initial value
-
-  let token = getBrowserCookiesInJSON().user_session;
-  if (token) {
-    store.dispatch(doChangueToken(token));
-  }
 
   return (
     <ApolloProvider client={client}>
