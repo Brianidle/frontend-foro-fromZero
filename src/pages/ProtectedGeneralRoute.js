@@ -37,8 +37,7 @@ const mapStateToProps = (state) => {
   } else {
     userAuthenticated = false;
   }
-  console.log("userAuthenticated");
-  console.log(userAuthenticated);
+  
   return {
     userAuthenticated
   }
