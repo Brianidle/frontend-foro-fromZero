@@ -28,30 +28,17 @@ const PostViewContainer = ({ post,
         onCompleted: (data) => {
             if (data.deletePost === true) {
                 //activate the "Post deleted successfully" after 2 sec when the notification messages are implemented.
-                console.log("Post deleted succesfully");
             } else {
                 //activate the "Error trying to delete the Post" after 2 sec
-                console.log("Error trying to delete the Post");
             }
 
             history.push("/");
         }
     })
 
-    if (browserCookies.username) {
-        if (browserCookies.username == post.author.username) {
-            belongToTheUserAuthenticated = true;
-        } else {
-            belongToTheUserAuthenticated = false;
-        }
-    }
-    else {
-        belongToTheUserAuthenticated = false;
-    }
-
     return (<PostView post={post} belongsToThePostFeed={belongsToThePostFeed}
         windowLocationFunc={windowLocationFunc} history={history}
-        belongToTheUserAuthenticated={belongToTheUserAuthenticated} deletePost={deletePost} />)
+        belongToTheUserAuthenticated={post.belongsToTheAuthenticatedUser??false} deletePost={deletePost} />)
 }
 
 PostViewContainer.propTypes = propTypes;
