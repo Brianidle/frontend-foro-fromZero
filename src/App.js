@@ -36,15 +36,21 @@ const store = createStore(
 
 const sessionAliveLink = new ApolloLink((operation, forward) => {
   return forward(operation).map(response => {
-
-    const context = operation.getContext()
+    const context = operation.getContext();
 
     let responseFromServer = context.response;
-    if (responseFromServer.status == 200) {
+    //if the server rsponse with a status code of 230 that means the requests, previously sent, arrived with no cookies, or in other words it arrived with no autentication cookies
+    //so im not going to give autorization to the user.
+    if (responseFromServer.status != 230) {
+      if (responseFromServer.status == 200) {
 
-      if (!store.tokenState) {
-        store.dispatch(doChangueToken("Authorized"));
+        if (!store.tokenState) {
+          store.dispatch(doChangueToken("Authorized"));
+        }
       }
+    } else {
+      store.dispatch(doChangueToken(""));
+      console.log("Session Closed");
     }
 
     return response;
