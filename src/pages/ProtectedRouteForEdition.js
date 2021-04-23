@@ -1,16 +1,15 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import auth from "./auth";
 
-// add the PrivateRoute component below our `Pages` component
-const ProtectedRouteForEdition = ({ component: Component, ...rest }) => {
-  // if the user is logged in, route them to the requested component
-  // else redirect them to the sign-in page
+import { connect } from 'react-redux';
+
+const ProtectedRouteForEdition = ({ component: Component, userAuthenticated, ...rest }) => {
+ 
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (auth.isAuthenticated() && sessionStorage.getItem("post")) {
+        if (userAuthenticated && sessionStorage.getItem("post")) {
           return <Component {...props} />;
         } else {
           return (
@@ -29,4 +28,18 @@ const ProtectedRouteForEdition = ({ component: Component, ...rest }) => {
   );
 };
 
-export default ProtectedRouteForEdition;
+const mapStateToProps = (state) => {
+  let userAuthenticated;
+
+  if (state.tokenState) {
+    userAuthenticated = true;
+  } else {
+    userAuthenticated = false;
+  }
+
+  return {
+    userAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(ProtectedRouteForEdition);
