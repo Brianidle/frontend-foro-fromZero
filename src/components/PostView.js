@@ -185,7 +185,8 @@ const PostView = ({
 
   return (
     <PostPanel belongsToThePostFeed={belongsToThePostFeed}>
-      <UpDownPointsPanel belongsToThePostFeed={belongsToThePostFeed}>
+      {/*The point and comment system is not finished yet*/}
+      {/* <UpDownPointsPanel belongsToThePostFeed={belongsToThePostFeed}>
         <ArrowsAndPointsContainer>
           <PointUpButton>
             <KeyboardArrowUpIcon style={{ fontSize: 25 }} />
@@ -195,7 +196,7 @@ const PostView = ({
             <KeyboardArrowDownIcon style={{ fontSize: 25 }} />
           </PointDownButton>
         </ArrowsAndPointsContainer>
-      </UpDownPointsPanel>
+      </UpDownPointsPanel> */}
 
       <PostInfoPanel onClick={windowLocationFunc}>
         <TopOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
@@ -227,10 +228,10 @@ const PostView = ({
         <PostContentContainer>{post.content}</PostContentContainer>
 
         <BottomOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
-          <BottomPanelButtonContainer>
+          {/* <BottomPanelButtonContainer>
             <ModeCommentIcon style={{ paddingTop: 5, fontSize: 21 }} />
             <strong style={{ paddingLeft: 5 }}>46 Comments</strong>
-          </BottomPanelButtonContainer>
+          </BottomPanelButtonContainer> */}
 
           {!belongsToThePostFeed && belongToTheUserAuthenticated && (
             <BottomPanelButtonContainer

@@ -83,7 +83,7 @@ const NavigationBar = (props) => {
       </LogoContainer>
 
       <SearchBarContainer>
-        <SearchBar />
+        {/* <SearchBar /> */}
       </SearchBarContainer>
       {!props.token && (
         <SignInSignUpButtonContainer>
