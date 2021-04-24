@@ -171,6 +171,13 @@ const BottomOfThePostPanel = styled.div`
   ${(props) => props.belongsToThePostFeed && "border-bottom-right-radius: 5px"};
 `;
 
+const PostImage = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+`;
+
 const PostView = ({
   post,
   belongsToThePostFeed,
@@ -226,6 +233,9 @@ const PostView = ({
         </TitleContainer>
 
         <PostContentContainer>{post.content}</PostContentContainer>
+
+        {post.urlImage && (<PostImage src={post.urlImage} alt="Post Image"/>)}
+        
 
         <BottomOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
           {/* <BottomPanelButtonContainer>
