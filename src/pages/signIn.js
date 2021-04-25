@@ -8,13 +8,18 @@ import { doChangueToken } from "../actions/actionCreators";
 import { BACKEND_API_URI } from "../constantVariables";
 
 const Layout = styled.div`
-  height: 100vh;
   text-align: center;
   margin-top: 25px;
 `;
 
+const pageTitle = "Sign In";
+
 const SignIn = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    document.title = pageTitle;
+  });
 
   const signIn = ({
     variables: {
@@ -48,12 +53,9 @@ const SignIn = (props) => {
       });
   }
 
-  useEffect(() => {
-    document.title = "SignIn Page";
-  });
-
   return (
     <Layout>
+      <h1>{pageTitle}</h1>
       <SignUpLoginFormContainer buttonText="Sign In" requestTrigger={signIn} />
       {errorMessage && (
         <div>

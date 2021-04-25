@@ -9,12 +9,13 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 25px;
 `;
+
+const pageTitle = "My Posts";
 
 const MyPosts = () => {
   useEffect(() => {
-    document.title = "My Posts Page";
+    document.title = pageTitle;
   });
 
   const { loading, data } = useQuery(GET_AUTHOR_POSTS);
@@ -23,6 +24,7 @@ const MyPosts = () => {
 
   return (
     <Layout>
+      <h1>{pageTitle}</h1>
       <PostList posts={data.authorPosts} />
     </Layout>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import PostViewContainer from "../components/PostViewContainer";
 
@@ -11,7 +11,6 @@ const PostLayout = styled.div`
   padding-left: 25px;
   display: flex;
   justify-content: center;
-  height: 100vh;
 `;
 
 const PostContainer = styled.main`
@@ -34,7 +33,14 @@ const AboutLinksContainer = styled.div`
   background-color: white;
 `;
 
+const pageTitle = "Post";
+
 const Post = (props) => {
+
+  useEffect(() => {
+    document.title = pageTitle;
+  });
+
   let idPost = props.match.params.id;
 
   const { data, loading } = useQuery(GET_POST, { variables: { idPost } });
