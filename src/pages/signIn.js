@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import SignUpLoginFormContainer from "../components/SignUpLoginFormContainer";
@@ -14,6 +14,7 @@ const Layout = styled.div`
 `;
 
 const SignIn = (props) => {
+  const [errorMessage, setErrorMessage] = useState("");
 
   const signIn = ({
     variables: {
@@ -31,11 +32,19 @@ const SignIn = (props) => {
         username,
         password
       })
-    }).then(response => response.text())
-      .then(data => {
-        console.log(data);
-        props.changueTokenState("Autorizado");
-        props.history.push("/");
+    }).then(response =>
+      response.text()).then((logInMessage) => {
+
+        if (logInMessage == "Unauthorized User") {
+          setErrorMessage("Invalid Username or Password");
+          setTimeout(() => {
+            setErrorMessage("");
+          }, 3000)
+        } else if (logInMessage == "Authorized User") {
+
+          props.changueTokenState("Autorizado");
+          props.history.push("/");
+        }
       });
   }
 
@@ -46,6 +55,13 @@ const SignIn = (props) => {
   return (
     <Layout>
       <SignUpLoginFormContainer buttonText="Sign In" requestTrigger={signIn} />
+      {errorMessage && (
+        <div>
+          <p>
+            {errorMessage}
+          </p>
+        </div>)
+      }
     </Layout>
   );
 };
