@@ -38,24 +38,24 @@ const PostContentContainer = styled.div`
   margin-left: 8px;
 `;
 
-const SubForoName = styled.a`
+const SubForoName = styled.span`
   padding-left: 6px;
   text-decoration: none;
   font-weight: 600;
   color: black;
 
-  :hover {
-    text-decoration: underline;
-  }
+  // :hover {
+  //   text-decoration: underline;
+  // }
 `;
 
-const UserName = styled.a`
+const UserName = styled.span`
   text-decoration: none;
   color: #787c7e;
 
-  :hover {
-    text-decoration: underline;
-  }
+  // :hover {
+  //   text-decoration: underline;
+  // }
 `;
 
 const UserImage = styled.img`
@@ -216,10 +216,10 @@ const PostView = ({
             </a>
           </ImagenSubForoContainer>
           <UserAndSubForoNameContainer>
-            <SubForoName href="https://www.youtube.com">f/tenis</SubForoName>
+            <SubForoName >f/tenis</SubForoName>
             <span style={{ color: "#787c7e" }}> . </span>
             <span style={{ color: "#787c7e" }}>Posted by </span>
-            <UserName href="https://www.reddit.com">
+            <UserName >
               u/{post.author.username}{" "}
             </UserName>
             <span style={{ color: "#787c7e" }}>
