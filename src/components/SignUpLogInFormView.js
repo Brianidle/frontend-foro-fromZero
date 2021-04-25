@@ -41,8 +41,9 @@ const SignUpLogInFormView = ({
         });
       }}
     >
+
+      <label htmlFor="username">Username: </label>
       <div>
-        <label htmlFor="username">Username: </label>
         <Input
           value={inputValues.username ?? ""}
           id="username"
@@ -56,19 +57,21 @@ const SignUpLogInFormView = ({
       {formType === "signup" && (
         <div>
           <label htmlFor="email">Email: </label>
-          <Input
-            value={inputValues.email ?? ""}
-            id="email"
-            name="email"
-            type="email"
-            onChange={onChange}
-            required
-          />
+          <div>
+            <Input
+              value={inputValues.email ?? ""}
+              id="email"
+              name="email"
+              type="email"
+              onChange={onChange}
+              required
+            />
+          </div>
         </div>
       )}
-
+      
+      <label htmlFor="password">Password: </label>
       <div>
-        <label htmlFor="password">Password: </label>
         <Input
           value={inputValues.password ?? ""}
           id="password"

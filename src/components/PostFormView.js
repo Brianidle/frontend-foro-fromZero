@@ -25,6 +25,7 @@ const Button = styled.button`
   font-size: 18px;
 `;
 
+
 const PostFormView = ({
   buttonText,
   onSubmit,
@@ -36,8 +37,8 @@ const PostFormView = ({
 }) => {
   return (
     <Form id="EditAndCreationFormPost" onSubmit={onSubmit}>
+      <label htmlFor="title">Title: </label>
       <div>
-        <label htmlFor="title">Title: </label>
         <Input
           value={inputValues.title ?? titleInputValue}
           id="title"
@@ -46,8 +47,8 @@ const PostFormView = ({
           data-testid="inputTitle"
         />
       </div>
+      <label htmlFor="content">Content: </label>
       <div>
-        <label htmlFor="content">Content: </label>
         <Input
           value={inputValues.content ?? contentInputValue}
           id="content"
@@ -56,8 +57,8 @@ const PostFormView = ({
           data-testid="inputContent"
         />
       </div>
+      <label htmlFor="urlImage">URL Image (Optional): </label>
       <div>
-        <label htmlFor="urlImage">Image (Optional): </label>
         <Input
           value={inputValues.urlImage ?? urlImageInputValue}
           id="urlImage"
