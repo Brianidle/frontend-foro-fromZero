@@ -57,7 +57,7 @@ const PostFormView = ({
           data-testid="inputContent"
         />
       </div>
-      <label htmlFor="urlImage">URL Image (Optional): </label>
+      <label htmlFor="urlImage">URL Image: </label>
       <div>
         <Input
           value={inputValues.urlImage ?? urlImageInputValue}

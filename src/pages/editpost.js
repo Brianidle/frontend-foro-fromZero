@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { EDIT_POST } from "../gql/mutation";
+import { GET_POSTS } from "../gql//query";
 import { useMutation } from "@apollo/client";
 
 import PostFormContainer from "../components/PostFormContainer";
@@ -24,6 +25,7 @@ const EditPost = (props) => {
 
   const [editPost] = useMutation(EDIT_POST, {
     variables: { idPost: post.id },
+    refetchQueries: [{ query: GET_POSTS }],
     onCompleted: (data) => {
       if (data.editPost === "POST_EDITED") {
         props.history.push("/");

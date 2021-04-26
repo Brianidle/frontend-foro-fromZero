@@ -22,27 +22,35 @@ const PostFormContainer = ({
     urlImage: urlImageInputValue,
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onChange = (event) => {
     setValue({ ...values, [event.target.name]: event.target.value });
   };
 
   return (
-    <PostFormView
-      buttonText={buttonText}
-      onChange={onChange}
-      inputValues={values}
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (values.title && (values.urlImage || values.content)) {
-          requestTrigger({ variables: { ...values } });
-        } else {
-          //activar una notificación para mostrar que notifique que se necesita un content o un urlImage
-        }
-      }}
-      titleInputValue={titleInputValue ?? ""}
-      contentInputValue={contentInputValue ?? ""}
-      urlImageInputValue={urlImageInputValue ?? ""}
-    ></PostFormView>
+    <div>
+      <PostFormView
+        buttonText={buttonText}
+        onChange={onChange}
+        inputValues={values}
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (values.title && (values.urlImage || values.content)) {
+            requestTrigger({ variables: { ...values } });
+          } else {
+            setErrorMessage("It is necessary a title and a URL Image or a Content");
+            setTimeout(() => {
+              setErrorMessage("");
+            }, 4000);
+          }
+        }}
+        titleInputValue={titleInputValue ?? ""}
+        contentInputValue={contentInputValue ?? ""}
+        urlImageInputValue={urlImageInputValue ?? ""}
+      ></PostFormView>
+      {errorMessage && <p>{errorMessage}</p>}
+    </div>
   );
 };
 
