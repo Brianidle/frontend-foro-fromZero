@@ -74,7 +74,7 @@ const UserDropDown = (props) => {
           <DropDownOptionButton
             onClick={() => {
               props.logout();
-              props.history.push("/");
+              props.history.push("/signin");
             }}
           >
             <MeetingRoomIcon />

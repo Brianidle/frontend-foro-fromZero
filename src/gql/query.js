@@ -8,6 +8,7 @@ const GET_POST = gql`
       content
       urlImage
       createdAt
+      foroPoints
       belongsToTheAuthenticatedUser
       author{
         username
@@ -24,6 +25,7 @@ const GET_POSTS = gql`
       content
       urlImage
       createdAt
+      foroPoints
       author{
         username
       }
@@ -39,6 +41,7 @@ const GET_AUTHOR_POSTS = gql`
       content
       urlImage
       createdAt
+      foroPoints
       author{
         username
       }

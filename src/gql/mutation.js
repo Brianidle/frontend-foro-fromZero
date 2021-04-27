@@ -50,4 +50,24 @@ const DELETE_POST = gql`
   }
 `;
 
-export { SIGN_UP, NEW_POST, EDIT_POST, DELETE_POST };
+const UPVOTE_POST = gql`
+mutation UpvotePost(
+ $idPost: ID!
+) {
+ upvotePost(
+   idPost: $idPost
+  )
+}
+`;
+
+const DOWNVOTE_POST = gql`
+mutation DownvotePost(
+ $idPost: ID!
+) {
+ downvotePost(
+   idPost: $idPost
+  )
+}
+`;
+
+export { SIGN_UP, NEW_POST, EDIT_POST, DELETE_POST, UPVOTE_POST, DOWNVOTE_POST };

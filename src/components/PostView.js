@@ -15,7 +15,10 @@ const propTypes = {
   post: PropTypes.object.isRequired,
   belongsToThePostFeed: PropTypes.bool.isRequired,
   belongToTheUserAuthenticated: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  upvotePost: PropTypes.func.isRequired,
+  downvotePost: PropTypes.func.isRequired,
+  foroPoints: PropTypes.number.isRequired
 };
 
 const PostInfoPanel = styled.div`
@@ -184,7 +187,10 @@ const PostView = ({
   belongToTheUserAuthenticated,
   deletePost,
   windowLocationFunc,
-  history
+  history,
+  upvotePost,
+  downvotePost,
+  foroPoints
 }) => {
   if (!belongsToThePostFeed) {
     sessionStorage.setItem("post", JSON.stringify(post));
@@ -192,18 +198,17 @@ const PostView = ({
 
   return (
     <PostPanel belongsToThePostFeed={belongsToThePostFeed}>
-      {/*The point and comment system is not finished yet*/}
-      {/* <UpDownPointsPanel belongsToThePostFeed={belongsToThePostFeed}>
+      <UpDownPointsPanel belongsToThePostFeed={belongsToThePostFeed}>
         <ArrowsAndPointsContainer>
-          <PointUpButton>
+          <PointUpButton onClick={upvotePost}>
             <KeyboardArrowUpIcon style={{ fontSize: 25 }} />
           </PointUpButton>
-          <span style={{ fontWeight: 650, color: "white" }}>154</span>
-          <PointDownButton>
+          <p style={{ fontWeight: 700, color: "white", marginTop: 5, marginBottom: 5 }}>{foroPoints}</p>
+          <PointDownButton onClick={downvotePost}>
             <KeyboardArrowDownIcon style={{ fontSize: 25 }} />
           </PointDownButton>
         </ArrowsAndPointsContainer>
-      </UpDownPointsPanel> */}
+      </UpDownPointsPanel>
 
       <PostInfoPanel onClick={windowLocationFunc}>
         <TopOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
@@ -234,8 +239,8 @@ const PostView = ({
 
         <PostContentContainer>{post.content}</PostContentContainer>
 
-        {post.urlImage && (<PostImage src={post.urlImage} alt="Post Image"/>)}
-        
+        {post.urlImage && (<PostImage src={post.urlImage} alt="Post Image" />)}
+
 
         <BottomOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
           {/* <BottomPanelButtonContainer>
