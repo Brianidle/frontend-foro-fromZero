@@ -22,8 +22,9 @@ const propTypes = {
 };
 
 const PostInfoPanel = styled.div`
-  width: 640px;
+  width: auto;
   padding-top: 8px;
+  flex-grow: 1;
 `;
 
 const ImagenSubForoContainer = styled.div`
@@ -32,7 +33,7 @@ const ImagenSubForoContainer = styled.div`
 `;
 
 const UserAndSubForoNameContainer = styled.div`
-  width: 500px;
+  width: auto;
   background-color: white;
   margin: auto 0;
 `;
@@ -123,13 +124,11 @@ const BottomPanelButtonContainer = styled.div`
 `;
 
 const PostPanel = styled.div`
-  min-width: 640px;
-  max-width: 640px;
-  width: 640px;
+  margin-bottom: 20px;
+  
   display: flex;
   flex-direction: row;
   background-color: white;
-  margin-bottom: 20px;
   font-size: 14px;
 
   ${(props) =>
@@ -144,6 +143,7 @@ const PostPanel = styled.div`
 const UpDownPointsPanel = styled.div`
   width: 40px;
   background-color: #ff1a1a;
+  flex-shrink: 0;
   ${(props) =>
     props.belongsToThePostFeed &&
     `

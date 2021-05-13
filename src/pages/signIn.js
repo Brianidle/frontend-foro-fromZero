@@ -5,7 +5,7 @@ import SignUpLoginFormContainer from "../components/SignUpLoginFormContainer";
 
 import { connect } from "react-redux";
 import { doChangueToken } from "../actions/actionCreators";
-import { BACKEND_API_URI } from "../constantVariables";
+import { BACKEND_EXPRESS_API_URI } from "../constantVariables";
 
 const Layout = styled.div`
   text-align: center;
@@ -26,7 +26,7 @@ const SignIn = (props) => {
       username, password
     },
   }) => {
-    fetch(BACKEND_API_URI + "/signin", {
+    fetch(BACKEND_EXPRESS_API_URI + "/signin", {
       method: "post",
       headers: {
         'Accept': 'application/json',

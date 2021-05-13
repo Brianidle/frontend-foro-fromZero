@@ -17,10 +17,10 @@ import { Provider } from "react-redux";
 import { changueTokenReducer } from "./reducers/changueToken";
 import { doChangueToken } from "./actions/actionCreators";
 
-import { BACKEND_API_URI } from './constantVariables';
+import { BACKEND_GQL_API_URI } from './constantVariables';
 
 
-const uri = BACKEND_API_URI;
+const uri = BACKEND_GQL_API_URI;
 
 const httpLink = createHttpLink({ uri, credentials: "include" });
 const cache = new InMemoryCache();

@@ -13,12 +13,10 @@ const PostLayout = styled.div`
   justify-content: center;
 `;
 
-const PostContainer = styled.main`
+const PostContainer = styled.div`
   cursor: default;
-  border-top-right-radius: 0px;
-  border-top-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
+  width : 640px;
+  min-width: 370px;
 `;
 
 const AsideContainer = styled.aside`
@@ -54,9 +52,6 @@ const Post = (props) => {
       <PostContainer>
         <PostViewContainer post={post} belongsToThePostFeed={false} />
       </PostContainer>
-      <AsideContainer>
-        <AboutLinksContainer>ABOUT LINKS</AboutLinksContainer>
-      </AsideContainer>
     </PostLayout>
   );
 };

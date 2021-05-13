@@ -5,10 +5,23 @@ import PostList from "../components/PostList";
 import { GET_AUTHOR_POSTS } from "../gql/query";
 import { useQuery } from "@apollo/client";
 
-const Layout = styled.div`
+const PostLayout = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+`;
+
+const PostsContainer = styled.div`
+  cursor: default;
+  width : 640px;
+  min-width: 370px;
+`;
+
+const PageTitle=styled.h1`
+  text-align:center;
+`;
+
+const PageLayout=styled.div`
+  padding: 0px 25px;
 `;
 
 const pageTitle = "My Posts";
@@ -23,10 +36,14 @@ const MyPosts = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <Layout>
-      <h1>{pageTitle}</h1>
-      <PostList posts={data.authorPosts} />
-    </Layout>
+    <PageLayout>
+    <PageTitle>{pageTitle}</PageTitle>
+    <PostLayout>
+      <PostsContainer>
+        <PostList posts={data.authorPosts} />
+      </PostsContainer>
+    </PostLayout>
+    </PageLayout>
   );
 };
 
