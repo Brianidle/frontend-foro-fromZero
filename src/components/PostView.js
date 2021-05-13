@@ -178,6 +178,8 @@ const PostImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
   width: 50%;
 `;
 
@@ -243,10 +245,10 @@ const PostView = ({
 
 
         <BottomOfThePostPanel belongsToThePostFeed={belongsToThePostFeed}>
-          {/* <BottomPanelButtonContainer>
+          <BottomPanelButtonContainer>
             <ModeCommentIcon style={{ paddingTop: 5, fontSize: 21 }} />
-            <strong style={{ paddingLeft: 5 }}>46 Comments</strong>
-          </BottomPanelButtonContainer> */}
+            <strong style={{ paddingLeft: 5 }}>Comments still not available</strong>
+          </BottomPanelButtonContainer> 
 
           {!belongsToThePostFeed && belongToTheUserAuthenticated && (
             <BottomPanelButtonContainer
