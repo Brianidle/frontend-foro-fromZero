@@ -1,0 +1,125 @@
+body {
+  margin: 0px;
+}
+nav {
+  background-color: red;
+  height: 50px;
+  margin-bottom: 15px;
+  display: inline-flex;
+  width: 100%;
+}
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: salmon;
+  border-radius: 10px;
+  padding: 20px 24px;
+  height: auto;
+  max-width: 100%;
+}
+input {
+  width: 100%;
+  height: 32px;
+}
+button {
+  height: 32px;
+  width: 60px;
+  margin-right: 10px;
+}
+.logoTitleInputContainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  align-items: center;
+}
+.logoTitleContainer {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+.logo {
+  background-color: seagreen;
+  width: 32px;
+  height: 32px;
+  padding-right: 8px;
+}
+.logoTitle {
+  background-color: slateblue;
+  font-weight: bold;
+  font-size: 18px;
+}
+.searchBarContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.inputContainer{
+  margin: 0 16px;
+}
+.buttonDropboxContainer {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 0;
+}
+.dropbox {
+  background-color: sandybrown;
+  width: 56px;
+  height: 32px;
+}
+.postsContainer {
+  background-color: skyblue;
+  width: 640px;
+  height: auto;
+  border-radius: 10px;
+}
+.post {
+  background-color: brown;
+  width: 100%;
+  height: 600px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.aboutLinks {
+  background-color: wheat;
+  width: 312px;
+  height: 300px;
+  margin-left: 24px;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+.navContentContainer {
+  padding: 0px 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+/* @media (max-width: 888px) {
+  input {
+    margin:0px 16px;
+  }
+} */
+@media (max-width: 1070px) {
+  .logoTitle {
+    display: none;
+  }
+}
+@media (max-width: 616px) {
+  button {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .postsContainer {
+    width: 100%;
+  }
+  .aboutLinks {
+    display: none;
+  }
+}
